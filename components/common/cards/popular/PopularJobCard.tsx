@@ -21,7 +21,7 @@ const PopularJobCard = ({
         "w-[250px] p-5",
         selectedJob === item.job_id
           ? "bg-primary"
-          : "bg-[#FFF] rounded-lg justify-center shadow-white"
+          : "bg-[#FFF] rounded-xl justify-center shadow-white"
       )}
       onPress={() => handleCardPress(item)}
     >

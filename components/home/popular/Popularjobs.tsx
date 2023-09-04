@@ -11,6 +11,7 @@ import { useRouter } from "expo-router";
 import useFetch from "../../../hooks/useFetch";
 import PopularJobCard from "../../common/cards/popular/PopularJobCard";
 import { COLORS, SIZES } from "../../../constants";
+import { JobData } from "../../../types/types";
 
 const Popularjobs = () => {
   const router = useRouter();
@@ -50,7 +51,7 @@ const Popularjobs = () => {
                 handleCardPress={handleCardPress}
               />
             )}
-            keyExtractor={(item) => item.job_id}
+            keyExtractor={(item: JobData) => item.job_id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal
           />

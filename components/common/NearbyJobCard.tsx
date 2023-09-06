@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { checkImageURL } from "../../../../utils";
+import { checkImageURL } from "../../utils";
 
 interface NearbyJobCardProps {
   job: any;

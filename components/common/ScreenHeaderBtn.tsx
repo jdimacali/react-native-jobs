@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Image } from "react-native";
 
-import { ImageSourcePropType } from "../../../types/types";
+import { ImageSourcePropType } from "../../types/types";
 
 interface ScreenHeaderBtn {
   iconUrl: ImageSourcePropType;

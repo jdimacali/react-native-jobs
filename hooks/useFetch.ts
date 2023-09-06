@@ -5,10 +5,10 @@ import { JobData } from "../types/types";
 
 const rapidApiKey = RAPID_API_KEY;
 
-const useFetch = (endpoint: string, query: any) => {
-  const [data, setData] = useState();
+const useFetch = (endpoint: string, query: {}) => {
+  const [data, setData] = useState<JobData[] | any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
 
   const options = {
     method: "GET",
@@ -46,10 +46,6 @@ const useFetch = (endpoint: string, query: any) => {
     setIsLoading(true);
     fetchData();
   };
-
-  if (data === undefined) {
-    throw new Error("No data found");
-  }
 
   return { data, isLoading, error, refetch };
 };

@@ -1,5 +1,5 @@
-import { Stack, useLocalSearchParams, useRouter } from "expo-router";
-import { SetStateAction, useCallback, useState } from "react";
+import { Stack, useRouter, useSearchParams } from "expo-router";
+import { useCallback, useState } from "react";
 import {
   View,
   Text,
@@ -17,10 +17,8 @@ import {
   ScreenHeaderBtn,
   Specifics,
 } from "../../components";
-import { COLORS, icons, SIZES } from "../../constants";
+import { icons } from "../../constants";
 import useFetch from "../../hooks/useFetch";
-
-import { JobData } from "../../types/types";
 
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
@@ -29,11 +27,12 @@ const tabs = ["About", "Qualifications", "Responsibilities"];
 const JobDetails = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState<string>(tabs[0]);
-  const params = useLocalSearchParams();
+  const params = useSearchParams();
   const router = useRouter();
 
   const { data, isLoading, error, refetch } = useFetch("job-details", {
     job_id: params.id,
+    extended_publisher_details: "true",
   });
 
   const onRefresh = useCallback(() => {
@@ -43,32 +42,38 @@ const JobDetails = () => {
   }, []);
 
   const displayTabContent = () => {
-    switch (activeTab) {
-      case "Qualifications":
-        return (
-          <Specifics
-            title="Qualifications"
-            points={data[0]?.["job_highlights"]?.["Qualifications"] ?? ["N/A"]}
-          />
-        );
+    if (data != undefined) {
+      switch (activeTab) {
+        case "Qualifications":
+          return (
+            <Specifics
+              title="Qualifications"
+              points={
+                data[0]?.["job_highlights"]?.["Qualifications"] ?? ["N/A"]
+              }
+            />
+          );
 
-      case "About":
-        return (
-          <JobAbout info={data[0]?.["job_description"] ?? "No data provided"} />
-        );
+        case "About":
+          return (
+            <JobAbout
+              info={data[0]?.["job_description"] ?? "No data provided"}
+            />
+          );
 
-      case "Responsibilities":
-        return (
-          <Specifics
-            title="Responsibilities"
-            points={
-              data[0]?.["job_highlights"]?.["Responsibilities"] ?? ["N/A"]
-            }
-          />
-        );
+        case "Responsibilities":
+          return (
+            <Specifics
+              title="Responsibilities"
+              points={
+                data[0]?.["job_highlights"]?.["Responsibilities"] ?? ["N/A"]
+              }
+            />
+          );
 
-      default:
-        return null;
+        default:
+          return null;
+      }
     }
   };
 
@@ -102,8 +107,8 @@ const JobDetails = () => {
             <ActivityIndicator size="large" color="#312651" />
           ) : error ? (
             <Text> Something Went Wrong</Text>
-          ) : !data ? (
-            <Text> No Data</Text>
+          ) : !data || data.length === 0 ? (
+            <Text> No Data </Text>
           ) : (
             <View className="p-4 pb-[100px]">
               <Company
@@ -117,8 +122,15 @@ const JobDetails = () => {
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
               />
+              {displayTabContent()}
             </View>
           )}
+          <JobFooter
+            url={
+              data[0]?.["job_google_link"] ??
+              "https://careers.google.com/jobs/results/"
+            }
+          />
         </ScrollView>
       </>
     </SafeAreaView>

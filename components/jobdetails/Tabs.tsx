@@ -28,7 +28,7 @@ function TabButton({ name, activeTab, onHandleSearchType }: TabButtonProps) {
       <Text
         className={clsx(
           "font-medium text-sm",
-          name === activeTab ? "text-primary" : "text-[#F3F4F8]"
+          name === activeTab ? "text-[#F3F4F8]" : "text-primary"
         )}
       >
         {name}

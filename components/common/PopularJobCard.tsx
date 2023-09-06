@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { checkImageURL } from "../../../../utils";
-import { JobData } from "../../../../types/types";
+import { checkImageURL } from "../../utils";
+import { JobData } from "../../types/types";
 
 interface PopularJobCardProps {
   item: any;

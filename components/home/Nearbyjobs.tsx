@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 
-import useFetch from "../../../hooks/useFetch";
-import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
-import { COLORS, SIZES } from "../../../constants";
-import { JobData } from "../../../types/types";
+import useFetch from "../../hooks/useFetch";
+import NearbyJobCard from "../common/NearbyJobCard";
+import { COLORS, SIZES } from "../../constants";
+import { JobData } from "../../types/types";
 
 const Nearbyjobs = () => {
   const router = useRouter();

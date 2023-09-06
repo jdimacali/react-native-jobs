@@ -10,7 +10,7 @@ import {
 import { useRouter } from "expo-router";
 import clsx from "clsx";
 
-import { icons } from "../../../constants";
+import { icons } from "../../constants";
 
 const jobTypes = ["Full-Time", "Part-Time", "Contractor"];
 

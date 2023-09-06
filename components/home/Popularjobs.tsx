@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 
-import useFetch from "../../../hooks/useFetch";
-import PopularJobCard from "../../common/cards/popular/PopularJobCard";
-import { COLORS, SIZES } from "../../../constants";
-import { JobData } from "../../../types/types";
+import useFetch from "../../hooks/useFetch";
+import PopularJobCard from "../common/PopularJobCard";
+import { COLORS, SIZES } from "../../constants";
+import { JobData } from "../../types/types";
 
 const Popularjobs = () => {
   const router = useRouter();

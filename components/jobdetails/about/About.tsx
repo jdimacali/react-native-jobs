@@ -1,14 +1,19 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text } from "react-native";
 
-import styles from './about.style'
-
-const About = () => {
-  return (
-    <View>
-      <Text>About</Text>
-    </View>
-  )
+interface AboutProps {
+  info: string;
 }
 
-export default About
+const About = ({ info }: AboutProps) => {
+  return (
+    <View className="mt-5 bg-[#FFF] rounded-[16px] p-4">
+      <Text className="text-xl text-primary font-bold">About the job:</Text>
+
+      <View className="my-3">
+        <Text className="text-[14px] text-gray my-[9.6px]">{info}</Text>
+      </View>
+    </View>
+  );
+};
+
+export default About;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   View,
   Text,
@@ -14,7 +14,13 @@ import { icons } from "../../constants";
 
 const jobTypes = ["Full-Time", "Part-Time", "Contractor"];
 
-const Welcome = () => {
+interface WelcomeProps {
+  searchTerm: string;
+  setSearchTerm: (text: string) => void;
+  handleClick: () => void;
+}
+
+const Welcome = ({ searchTerm, setSearchTerm, handleClick }: WelcomeProps) => {
   const router = useRouter();
   const [activeJobType, setActiveJobType] = useState("Full-Time");
 
@@ -30,12 +36,15 @@ const Welcome = () => {
         <View className="flex-1 bg-white mr-12 justify-center rounded-lg h-full">
           <TextInput
             className="font-regular w-full h-full p-x-4"
-            value=""
-            onChange={() => {}}
+            value={searchTerm}
+            onChangeText={(text) => setSearchTerm(text)}
             placeholder="What are you looking for?"
           />
         </View>
-        <TouchableOpacity className="w-[50px] h-full bg-tertiary rounded-xl justify-center items-center">
+        <TouchableOpacity
+          className="w-[50px] h-full bg-tertiary rounded-xl justify-center items-center"
+          onPress={handleClick}
+        >
           <Image
             source={icons.search}
             resizeMode="contain"

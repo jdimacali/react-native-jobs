@@ -1,8 +1,9 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { checkImageURL } from "../../utils";
+import { JobData, jobDetails } from "../../types/types";
 
 interface NearbyJobCardProps {
-  job: any;
+  job: JobData | jobDetails;
   handleNavigate: () => void;
 }
 
@@ -15,8 +16,8 @@ const NearbyJobCard = ({ job, handleNavigate }: NearbyJobCardProps) => {
       <TouchableOpacity className="w-[50px] h-[50px] rounded-lg justify-center items-center">
         <Image
           source={{
-            uri: checkImageURL(job.employer_logo)
-              ? job.employer_logo
+            uri: checkImageURL(job?.["employer_logo"])
+              ? job?.["employer_logo"]
               : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
           }}
           resizeMode="contain"

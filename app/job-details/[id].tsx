@@ -1,4 +1,4 @@
-import { Stack, useRouter, useSearchParams } from "expo-router";
+import { Stack, useRouter, useLocalSearchParams } from "expo-router";
 import { useCallback, useState } from "react";
 import {
   View,
@@ -27,7 +27,7 @@ const tabs = ["About", "Qualifications", "Responsibilities"];
 const JobDetails = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState<string>(tabs[0]);
-  const params = useSearchParams();
+  const params = useLocalSearchParams();
   const router = useRouter();
 
   const { data, isLoading, error, refetch } = useFetch("job-details", {

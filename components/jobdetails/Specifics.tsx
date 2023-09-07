@@ -1,9 +1,8 @@
-import React from "react";
 import { View, Text } from "react-native";
 
 interface SpecificsProps {
   title: "Qualifications" | "Responsibilities";
-  points: [];
+  points: string[];
 }
 
 const Specifics = ({ title, points }: SpecificsProps) => {

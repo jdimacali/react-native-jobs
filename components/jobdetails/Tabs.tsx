@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { TouchableOpacity, FlatList, Text, View } from "react-native";
 import clsx from "clsx";
 

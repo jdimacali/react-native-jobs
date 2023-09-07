@@ -3,7 +3,6 @@ import { useRouter } from "expo-router";
 
 import useFetch from "../../hooks/useFetch";
 import NearbyJobCard from "../common/NearbyJobCard";
-import { COLORS, SIZES } from "../../constants";
 import { JobData } from "../../types/types";
 
 const Nearbyjobs = () => {
@@ -24,15 +23,17 @@ const Nearbyjobs = () => {
       </View>
       <View className="mt-4">
         {isLoading ? (
-          <ActivityIndicator size="large" color={COLORS.primary} />
+          <ActivityIndicator size="large" color="#312651" />
         ) : error ? (
           <Text> Something Went Wrong</Text>
         ) : (
-          data?.map((job: JobData) => (
+          data.map((job) => (
             <NearbyJobCard
               job={job}
-              key={`nearby-job-${job?.job_id}`}
-              handleNavigate={() => router.push(`/job-details/${job.job_id}`)}
+              key={`nearby-job-${job?.["job_id"]}`}
+              handleNavigate={() =>
+                router.push(`/job-details/${job?.["job_id"]}`)
+              }
             />
           ))
         )}

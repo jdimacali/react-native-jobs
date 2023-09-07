@@ -5,8 +5,8 @@ import { checkImageURL } from "../../utils";
 import { JobData } from "../../types/types";
 
 interface PopularJobCardProps {
-  item: any;
-  selectedJob: "string" | undefined;
+  item: JobData;
+  selectedJob: string;
   handleCardPress: (item: JobData) => void;
 }
 
@@ -33,7 +33,7 @@ const PopularJobCard = ({
       >
         <Image
           source={{
-            uri: checkImageURL(item.employer_logo)
+            uri: checkImageURL(item?.["employer_logo"])
               ? item.employer_logo
               : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
           }}

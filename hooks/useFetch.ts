@@ -1,12 +1,12 @@
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import { RAPID_API_KEY } from "@env";
-import { JobData } from "../types/types";
+import { JobData, jobDetails } from "../types/types";
 
 const rapidApiKey = RAPID_API_KEY;
 
 const useFetch = (endpoint: string, query: {}) => {
-  const [data, setData] = useState<JobData[] | any[]>([]);
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
@@ -30,6 +30,7 @@ const useFetch = (endpoint: string, query: {}) => {
 
       setData(response.data.data);
       setIsLoading(false);
+      if (response === null) throw new Error();
     } catch (error: any) {
       setError(error);
       console.log(error);

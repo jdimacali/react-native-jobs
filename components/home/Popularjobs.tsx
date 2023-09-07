@@ -10,22 +10,21 @@ import { useRouter } from "expo-router";
 
 import useFetch from "../../hooks/useFetch";
 import PopularJobCard from "../common/PopularJobCard";
-import { COLORS, SIZES } from "../../constants";
 import { JobData } from "../../types/types";
 
 const Popularjobs = () => {
   const router = useRouter();
   const { data, isLoading, error } = useFetch("search", {
-    query: "Python developer in Texas, USA",
+    query: "Javascript ",
     page: "1",
     num_pages: "1",
   });
 
-  const [selectedJob, setSelectedJob] = useState();
+  const [selectedJob, setSelectedJob] = useState<string>("");
 
-  const handleCardPress = (item: any) => {
-    router.push(`/job-details/${item.job_id}`);
-    setSelectedJob(item.job_id);
+  const handleCardPress = (item: JobData) => {
+    router.push(`/job-details/${item?.["job_id"]}`);
+    setSelectedJob(item?.["job_id"]);
   };
 
   return (
@@ -38,7 +37,7 @@ const Popularjobs = () => {
       </View>
       <View className="mt-4">
         {isLoading ? (
-          <ActivityIndicator size="large" color={COLORS.primary} />
+          <ActivityIndicator size="large" color="#312651" />
         ) : error ? (
           <Text> Something Went Wrong</Text>
         ) : (
@@ -52,7 +51,7 @@ const Popularjobs = () => {
               />
             )}
             keyExtractor={(item: JobData) => item.job_id}
-            contentContainerStyle={{ columnGap: SIZES.medium }}
+            contentContainerStyle={{ columnGap: 16 }}
             horizontal
           />
         )}
